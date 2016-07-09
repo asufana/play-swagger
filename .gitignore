@@ -26,4 +26,5 @@
 /modules
 /tmp
 server.pid
+commands.pyc
 

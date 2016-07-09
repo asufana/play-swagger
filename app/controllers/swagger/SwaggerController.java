@@ -6,8 +6,8 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import com.wordnik.swagger.models.Swagger;
 import models.swagger.Swaggerton;
-import play.mvc.Controller;
-import play.mvc.results.RenderJson;
+import play.mvc.*;
+import play.mvc.results.*;
 
 /**
  * @author Michael Ruf
@@ -17,6 +17,12 @@ import play.mvc.results.RenderJson;
 public class SwaggerController extends Controller {
 
     private static final ObjectMapper mapper;
+    
+    @Before
+    static void checkAuthentification() {
+        response.setHeader("Access-Control-Allow-Origin", "*");
+        response.contentType = "application/json";
+    }
 
     static {
         mapper = new ObjectMapper();
@@ -32,7 +38,7 @@ public class SwaggerController extends Controller {
         }
 
         try {
-            throw new RenderJson(mapper.writeValueAsString(swaggerObject));
+            throw new RenderHtml(mapper.writeValueAsString(swaggerObject));
         } catch (JsonProcessingException e) {
             e.printStackTrace();
         }

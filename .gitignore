@@ -12,6 +12,9 @@
 /bin
 /out
 /eclipse
+.classpath
+.project
+.settings
 
 # Ignore Play! working directory
 /conf/application.conf
@@ -23,3 +26,5 @@
 /modules
 /tmp
 server.pid
+commands.pyc
+
